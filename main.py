@@ -1,6 +1,8 @@
 import random
 import time
 
+edgar
+
 #https://docs.google.com/document/d/12Lgoe0pz3LDN1C1GnyhO4mznLoy_PkJRcGvO-OsKtC8/edit (TRACK)        download file w track as .txt
 #https://docs.google.com/document/d/1op-mx9VOonx-x1e-jvTox2gHTJ540Gxo0te0QokSxX0/edit?pli=1 (MENU)
 
