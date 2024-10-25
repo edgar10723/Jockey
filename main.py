@@ -12,6 +12,9 @@ class Main:
   menu = Menu("/Menu.txt")
   menu.affiche()
 
+  Sys_pari.demarre()
+  montant = int(input("Entrez le montant à parier : "))
+    sys_pari.parier(chevaux[0], montant)
 
 
 class Jeu:
