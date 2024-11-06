@@ -18,7 +18,7 @@ class System_pari:
   
   def parier(self, montant):
     if self.total > montant:
-      return IndexError('')
+      raise IndexError("Vous n'avez pas assez d'argent pour parier cette somme")
     else:
       self.total -= montant
       return True
@@ -26,18 +26,26 @@ class System_pari:
   def mis_a_jour_total(self, montant):
     self.total += montant
 
+class Main:
+  def __init__(self):
+        self.horses = [
+            Horse("Horse 1", 10, 15),
+            Horse("Horse 2", 12, 18),
+            Horse("Horse 3", 8, 14),
+            Horse("Horse 4", 9, 16),
+            Horse("Horse 5", 11, 17),
+            Horse("Horse 6", 10, 20),
+            Horse("Horse 7", 13, 19),
+            Horse("Horse 8", 15, 22)
+        ]
+        self.system_pari = System_pari()
+  
+  def demmarer(self):
+    print("Le course demarre...")
+    for horse in self.horses:
+      horse.run()
 
 
-
-#LES CHEVEAUX ---------------------------------------------------------------------------------------------------------------------------
-
-
-
-#SYSTEM PARI ----------------------------------------------------------------------------------------------------------------------------
-
-
-
-#FAIT ALEATOIRE -------------------------------------------------------------------------------------------------------------------------
 
 class Fait_aleatoire:
   def __init__(self,accident, blessure, boost):
@@ -45,7 +53,7 @@ class Fait_aleatoire:
     self.blessure = "Blessure"
     self.boost = "Boost"
 
-  def event_innatendue(self, chevaux):
+  def evenement_innatendue(self, chevaux):
     #for random cheval
     if random.random() < 0.05:
       print(f"{cheval.name} a eu un accident et s'arrête.")
