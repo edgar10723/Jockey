@@ -7,12 +7,13 @@ class Chevaux:
     self.nom = nom
     self.min_vitesse = min_vitesse
     self.max_vitesse = max_vitesse
+    self.speed = 0
+  
+  def courir_speed(self):
+    self.speed = randint(min_vitesse, max_vitesse)
 
+class System_pari:
   
-  
-  Sys_pari.demarre()
-  montant = int(input("Entrez le montant à parier : "))
-    sys_pari.parier(chevaux[0], montant)
 
 
     def demarre(self):
