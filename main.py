@@ -1,86 +1,82 @@
 import random
 import time
 
-
-class Chevaux:
-  def __init__(self, nom, min_vitesse, max_vitesse):
-    self.nom = nom
-    self.min_vitesse = min_vitesse
-    self.max_vitesse = max_vitesse
-    self.distance = 0
-    self.speed = 0
+class Cheval:
+    def __init__(self, nom, min_vitesse, max_vitesse):
+        self.nom = nom
+        self.min_vitesse = min_vitesse
+        self.max_vitesse = max_vitesse
+        self.distance = 0
+        self.vitesse = 0
   
-  def courir_speed(self):
-    self.speed = randint(min_vitesse, max_vitesse)
-    self.distance += speed
+    def courir(self):
+        self.vitesse = random.randint(self.min_vitesse, self.max_vitesse)
+        self.distance += self.vitesse
+        return self.vitesse  # Return the speed for display
 
-class System_pari:
-  def __init__(self):
-    self.total = 500
+class SystemeDeParis:
+    def __init__(self):
+        self.total = 500
   
-  def parier(self, montant):
-    if self.total > montant:
-      raise IndexError("Vous n'avez pas assez d'argent pour parier cette somme")
-    else:
-      self.total -= montant
-      return True
+    def parier(self, montant):
+        if self.total < montant:
+            raise IndexError("Vous n'avez pas assez d'argent pour parier cette somme")
+        else:
+            self.total -= montant
+            return True
   
-  def mis_a_jour_total(self, montant):
-    self.total += montant
+    def mettre_a_jour_total(self, montant):
+        self.total += montant
 
-class Jockey_race:
-  def __init__(self):
-        self.horses = [
-            Horse("Horse 1", 10, 15),
-            Horse("Horse 2", 12, 18),
-            Horse("Horse 3", 8, 14),
-            Horse("Horse 4", 9, 16),
-            Horse("Horse 5", 11, 17),
-            Horse("Horse 6", 10, 20),
-            Horse("Horse 7", 13, 19),
-            Horse("Horse 8", 15, 22)
+class CourseDeJockey:
+    def __init__(self):
+        self.chevaux = [
+            Cheval("Cheval 1", 10, 15),
+            Cheval("Cheval 2", 12, 18),
+            Cheval("Cheval 3", 8, 14),
+            Cheval("Cheval 4", 9, 16),
+            Cheval("Cheval 5", 11, 17),
+            Cheval("Cheval 6", 10, 20),
+            Cheval("Cheval 7", 13, 19),
+            Cheval("Cheval 8", 15, 22)
         ]
-        self.system_pari = System_pari()
+        self.systeme_de_paris = SystemeDeParis()
   
-  def demmarer(self):
-    print("Le course demarre...")
-    for horse in self.horses:
-      horse.run()
+    def demarrer(self):
+        print("La course démarre...")
+        while True:
+            for cheval in self.chevaux:
+                vitesse = cheval.courir()
+                print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
+                if cheval.distance >= 100:
+                    return cheval
 
+def main():
+    jeu = CourseDeJockey()
 
+    while True:
+        action = input("Entrez 'parier' pour placer un pari, 'course' pour commencer la course, ou 'exit' pour quitter: ").lower()
+        if action == 'parier':
+            montant = int(input("Entrer la somme à parier: "))
+            if jeu.systeme_de_paris.parier(montant):
+                numero_cheval = int(input("Entrez le numéro du cheval sur lequel parier (1-8): ")) - 1
+                jeu.pari_en_cours = (jeu.chevaux[numero_cheval], montant)
+                print(f"Vous pariez {montant} sur {jeu.chevaux[numero_cheval].nom}.")
+        elif action == 'course':
+            gagnant = jeu.demarrer()
+            print(f"Le gagnant est {gagnant.nom}!")
 
-class Fait_aleatoire:
-  def __init__(self,accident, blessure, boost):
-    self.accident = "Accident"
-    self.blessure = "Blessure"
-    self.boost = "Boost"
+            if gagnant == jeu.pari_en_cours[0]:
+                paiement = 2 * jeu.pari_en_cours[1]
+                jeu.systeme_de_paris.mettre_a_jour_total(paiement)
+                print(f"Vous avez gagné {paiement}! Nouveau solde: {jeu.systeme_de_paris.total}")
+            else:
+                print("Vous avez perdu votre pari.")
+        elif action == 'exit':
+            print("Sortie du jeu.")
+            break
+        else:
+            print("Action invalide. Veuillez choisir à nouveau.")
 
-  def evenement_innatendue(self, chevaux):
-    #for random cheval
-    if random.random() < 0.05:
-      print(f"{cheval.name} a eu un accident et s'arrête.")
-      cheval.speed = 0
-      time.sleep(2)
-      cheval.speed = random.randint(5, 20)
-    if random.random() < 0.03:
-      print(f"{cheval.name} c´est blesse.")
-      cheval.speed = 5
-    if random.random() < 0.01:
-      print(f"{cheval.name} a dope")
-      cheval.speed = 20
-
-#MENU---------------------------------------------------------------------------------------------------------------------------------------
-class Menu:
-    def __init__(self, menu_fiche):
-        self.menu_fiche = menu_fiche
-
-    def affiche_debut(self):
-        with open(self.menu_fiche) as menu:
-            for line in menu:
-                print(line, end="")
-        print()
-
-
-
-
-
+if __name__ == "__main__":
+    main()
