@@ -26,7 +26,7 @@ class System_pari:
   def mis_a_jour_total(self, montant):
     self.total += montant
 
-class Main:
+class Jockey_race:
   def __init__(self):
         self.horses = [
             Horse("Horse 1", 10, 15),
