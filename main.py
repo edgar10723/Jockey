@@ -16,7 +16,7 @@ class System_pari:
   def __init__(self):
     self.total = 500
   
-  def pari(self, montant):
+  def parier(self, montant):
     if self.total > montant:
       return IndexError('')
     else:
@@ -27,11 +27,6 @@ class System_pari:
     self.total += montant
 
 
-    def demarre(self):
-      while True:
-        cmd = input()
-        if cmd == "start":
-
 
 
 #LES CHEVEAUX ---------------------------------------------------------------------------------------------------------------------------
@@ -39,18 +34,6 @@ class System_pari:
 
 
 #SYSTEM PARI ----------------------------------------------------------------------------------------------------------------------------
-
-class Sys_pari:
-  def __init__(self, argent, multiplier)
-    self.argent = 1000
-    self.multiplier = 
-
-  def parier(self, argent, montant):
-    if self.argent < montant:
-      print("Vous n'avez pas assez d'argent pour parier.")
-    else:
-      self.argent -= montant
-        print(f"Vous pariez {montant} sur {cheval.name}.")
 
 
 
