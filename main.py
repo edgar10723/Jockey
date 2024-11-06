@@ -7,10 +7,12 @@ class Chevaux:
     self.nom = nom
     self.min_vitesse = min_vitesse
     self.max_vitesse = max_vitesse
+    self.distance = 0
     self.speed = 0
   
   def courir_speed(self):
     self.speed = randint(min_vitesse, max_vitesse)
+    self.distance += speed
 
 class System_pari:
   def __init__(self):
