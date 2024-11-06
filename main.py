@@ -1,36 +1,19 @@
 import random
 import time
 
-edgar
 
-#https://docs.google.com/document/d/12Lgoe0pz3LDN1C1GnyhO4mznLoy_PkJRcGvO-OsKtC8/edit (TRACK)        download file w track as .txt
-#https://docs.google.com/document/d/1op-mx9VOonx-x1e-jvTox2gHTJ540Gxo0te0QokSxX0/edit?pli=1 (MENU)
+class Chevaux:
+  def __init__(self, nom, min_vitesse, max_vitesse):
+    self.nom = nom
+    self.min_vitesse = min_vitesse
+    self.max_vitesse = max_vitesse
 
-
-class Main:
-  jeu = Jeu("/content/track.txt")
-  jeu.affiche()
-
-  menu = Menu("/Menu.txt")
-  menu.affiche()
-
+  
+  
   Sys_pari.demarre()
   montant = int(input("Entrez le montant à parier : "))
     sys_pari.parier(chevaux[0], montant)
 
-
-class Jeu:
-  def __init__(self, nom_de_carte):
-        with open(nom_de_carte) as carte:
-          self.track = [[Case(char) for char in ligne if char != '\n'] for ligne in carte.readlines()]
-
-
-  def affiche(self):
-    for ligne in self.track:
-      for case in ligne:
-          print(case, end='')
-      print()
-    print('\n')
 
     def demarre(self):
       while True:
@@ -41,24 +24,6 @@ class Jeu:
 
 #LES CHEVEAUX ---------------------------------------------------------------------------------------------------------------------------
 
-class Cheveaux:
-  def __init__(self, name, numero, stat):
-    self.name = name
-    self.speed = 0
-    self.numero = numero
-
-  def courir_speed(self, Cheval):
-        self.speed = random.randint(7, 16)
-
-Cheval1 = Chevaux("Cheval 1", 1)
-Cheval2 = Chevaux("Cheval 2", 2)
-Cheval3 = Chevaux("Cheval 3", 3)
-Cheval4 = Chevaux("Cheval 4", 4)
-Cheval5 = Chevaux("Cheval 5", 5)
-Cheval6 = Chevaux("Cheval 6", 6)
-Cheval7 = Chevaux("Cheval 7", 7)
-Cheval8 = Chevaux("Cheval 8", 8)
-
 
 
 #SYSTEM PARI ----------------------------------------------------------------------------------------------------------------------------
@@ -66,7 +31,7 @@ Cheval8 = Chevaux("Cheval 8", 8)
 class Sys_pari:
   def __init__(self, argent, multiplier)
     self.argent = 1000
-    self.multiplier =
+    self.multiplier = 
 
   def parier(self, argent, montant):
     if self.argent < montant:
