@@ -13,7 +13,18 @@ class Chevaux:
     self.speed = randint(min_vitesse, max_vitesse)
 
 class System_pari:
+  def __init__(self):
+    self.total = 500
   
+  def pari(self, montant):
+    if self.total > montant:
+      return IndexError('')
+    else:
+      self.total -= montant
+      return True
+  
+  def mis_a_jour_total(self, montant):
+    self.total += montant
 
 
     def demarre(self):
