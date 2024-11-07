@@ -20,7 +20,7 @@ class SystemeDeParis:
   
     def parier(self, montant):
         if self.total < montant:
-            raise IndexError("Vous n'avez pas assez d'argent pour parier cette somme")
+            print("Vous n'avez pas assez d'argent pour parier cette somme")
         else:
             self.total -= montant
             return True
