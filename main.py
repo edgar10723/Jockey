@@ -72,7 +72,7 @@ def main():
                 print(f"Vous avez gagné {paiement}! Nouveau solde: {jeu.systeme_de_paris.total}")
             else:
                 print("Vous avez perdu votre pari.")
-        elif choix == "info":     # Horse[] [numero] , V:[vitesse]
+        elif action == "info":     # Horse[] [numero] , V:[vitesse]
             self.information()
         
         elif action == 'exit':
