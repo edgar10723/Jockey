@@ -12,7 +12,7 @@ class Cheval:
     def courir(self):
         self.vitesse = random.randint(self.min_vitesse, self.max_vitesse)
         self.distance += self.vitesse
-        return self.vitesse  # Return the speed for display
+        return self.vitesse
 
 class SystemeDeParis:
     def __init__(self):
@@ -48,7 +48,7 @@ class CourseDeJockey:
             for cheval in self.chevaux:
                 vitesse = cheval.courir()
                 print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
-                if cheval.distance >= 100:
+                if cheval.distance >= 100: #SI 2 CHOISI PLUS HAUT
                     return cheval
 
 def main():
