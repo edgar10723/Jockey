@@ -41,20 +41,21 @@ class CourseDeJockey:
         ]
 
         def demarrer(self):
-        print("La course démarre...")
-        while True:
-            for cheval in self.chevaux:
-                vitesse = cheval.courir()
-                print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
-                cheval_fini = cheval in self.chevaux if cheval.distance >= 100
-                if len(cheval_fini) >=2:
-                  premier = 0
-                  if premier < cheval_fini:
-                    cheval_fini = premier
-                    return premier
-                else:
-                  if cheval.distance >= 100:
-                    return cheval
+          print("La course démarre...")
+          while True:
+              for cheval in self.chevaux:
+                  vitesse = cheval.courir()
+                  print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
+                  for cheval in self.chevaux:
+                    if cheval.distance >= 100:
+                      if len(cheval) >=2:
+                        premier = 0
+                        if premier < cheval_fini:
+                          cheval = premier
+                          return premier
+                        else:
+                            if cheval.distance >= 100:
+                              return cheval
                       
     '''def demarrer(self):
         print("La course démarre...")
@@ -72,7 +73,7 @@ class Jeu:
     def information(self):
         print("Informations sur les chevaux:")
         for cheval in self.course.chevaux:
-            print(f"{cheval.nom}, V: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
+            print(f"{cheval.nom}, Spd: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
 
     def demarrer(self):
         while True:
@@ -110,3 +111,4 @@ class Jeu:
 if __name__ == "__main__":
     jeu = Jeu()
     jeu.demarrer()
+
