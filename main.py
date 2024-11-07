@@ -40,14 +40,30 @@ class CourseDeJockey:
             for i in range(8)
         ]
 
-    def demarrer(self):
+        def demarrer(self):
         print("La course démarre...")
         while True:
             for cheval in self.chevaux:
                 vitesse = cheval.courir()
                 print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
-                if cheval.distance >= 100:
+                cheval_fini = cheval in self.chevaux if cheval.distance >= 100
+                if len(cheval_fini) >=2:
+                  premier = 0
+                  if premier < cheval_fini:
+                    cheval_fini = premier
+                    return premier
+                else:
+                  if cheval.distance >= 100:
                     return cheval
+                      
+    '''def demarrer(self):
+        print("La course démarre...")
+        while True:
+            for cheval in self.chevaux:
+                vitesse = cheval.courir()
+                print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
+                if cheval.distance >= 100: #SI 2 CHOISI PLUS HAUT
+                    return cheval'''
 
 class Jeu:
     def __init__(self):
