@@ -14,6 +14,9 @@ class Cheval:
         self.distance += self.vitesse
         return self.vitesse
 
+
+
+
 class SystemeDeParis:
     def __init__(self):
         self.total = 500
@@ -29,19 +32,17 @@ class SystemeDeParis:
         self.total += montant
 
 class CourseDeJockey:
+    class CourseDeJockey:
     def __init__(self):
-        self.chevaux = [
-            Cheval("Cheval 1", 10, 15),
-            Cheval("Cheval 2", 12, 18),
-            Cheval("Cheval 3", 8, 14),
-            Cheval("Cheval 4", 9, 16),
-            Cheval("Cheval 5", 11, 17),
-            Cheval("Cheval 6", 10, 20),
-            Cheval("Cheval 7", 13, 19),
-            Cheval("Cheval 8", 15, 22)
-        ]
+        self.chevaux = self.creer_chevaux()
         self.systeme_de_paris = SystemeDeParis()
   
+    def creer_chevaux(self):
+        return [
+            Cheval(f"Cheval {i+1}", random.randint(8, 12), random.randint(15, 22))
+            for i in range(8)
+               ]
+
     def demarrer(self):
         print("La course démarre...")
         while True:
