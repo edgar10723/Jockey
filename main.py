@@ -78,5 +78,35 @@ def main():
         else:
             print("Action invalide. Veuillez choisir à nouveau.")
 
+class Menu:
+    def __init__(self, menu_fiche):
+        self.menu_fiche = menu_fiche
+
+    def affiche_debut(self):
+        with open(self.menu_fiche) as menu:
+            for line in menu:
+                print(line, end="")
+        print()
+
+    def utilisateur_input(self):
+      choix = input("Type (commencer/user/info/quit): ").lower()
+      if choix == "commencer":
+        self.demmarer()
+      elif choix == "info": # Horse[] [numero] , V:[vitesse]
+        self.information()
+
+      elif choix == "quit":
+        exit()
+      else:
+        print("Choix invalide. Veuillez réessayer.")
+
+    def information(self):
+      print("Informations sur les chevaux:")
+      print(f"Horse {"numero"}, V: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
+
+
+menu = Menu("Menu.txt")
+menu.affiche_debut()
+
 if __name__ == "__main__":
     main()
