@@ -83,7 +83,7 @@ def main():
             
     def information(self):
       print("Informations sur les chevaux:")
-      print(f"Horse {"numero"}, V: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
+      print(f"{cheval.nom}, V: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
 
 class Menu:
     def __init__(self, menu_fiche):
