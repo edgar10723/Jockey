@@ -55,7 +55,7 @@ def main():
     jeu = CourseDeJockey()
 
     while True:
-        action = input("Entrez 'parier' pour placer un pari, 'course' pour commencer la course, ou 'exit' pour quitter: ").lower()
+        action = input("Entrez 'parier' pour placer un pari, 'course' pour commencer la course, 'information' savoir plus sur les chevaux, ou 'exit' pour quitter: ").lower()
         if action == 'parier':
             montant = int(input("Entrer la somme à parier: "))
             if jeu.systeme_de_paris.parier(montant):
@@ -72,11 +72,18 @@ def main():
                 print(f"Vous avez gagné {paiement}! Nouveau solde: {jeu.systeme_de_paris.total}")
             else:
                 print("Vous avez perdu votre pari.")
+        elif choix == "info":     # Horse[] [numero] , V:[vitesse]
+            self.information()
+        
         elif action == 'exit':
             print("Sortie du jeu.")
             break
         else:
             print("Action invalide. Veuillez choisir à nouveau.")
+            
+    def information(self):
+      print("Informations sur les chevaux:")
+      print(f"Horse {"numero"}, V: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
 
 class Menu:
     def __init__(self, menu_fiche):
@@ -88,21 +95,6 @@ class Menu:
                 print(line, end="")
         print()
 
-    def utilisateur_input(self):
-      choix = input("Type (commencer/user/info/quit): ").lower()
-      if choix == "commencer":
-        self.demmarer()
-      elif choix == "info": # Horse[] [numero] , V:[vitesse]
-        self.information()
-
-      elif choix == "quit":
-        exit()
-      else:
-        print("Choix invalide. Veuillez réessayer.")
-
-    def information(self):
-      print("Informations sur les chevaux:")
-      print(f"Horse {"numero"}, V: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
 
 
 menu = Menu("Menu.txt")
