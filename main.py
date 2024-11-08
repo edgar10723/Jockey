@@ -108,5 +108,6 @@ if __name__ == "__main__":
 #choix de chevaux entre 8
 #si 'course' sans parier, retourne au main
 #EXTRA
+#Modifier condition pour gagner, si plusieurs passe 100 en meme temps, celui avec la vitesse moyenne le plus elevé gagne
 '''Entrer la somme a parier: 
 (vous avez ...)'''
