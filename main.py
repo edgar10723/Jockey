@@ -74,11 +74,16 @@ class Jeu:
                 print("Action invalide. Veuillez choisir à nouveau.")
 
     def placer_pari(self):
+      while True:
         montant = int(input("Entrer la somme à parier: "))
         if montant <= 0:
-            return int(input("Entrer la somme à parier: "))
+          print("Montant doit etre positif. Veuillez reesayer")
+          continue
         if self.course.systeme_de_paris.parier(montant):
+          while True:
             numero_cheval = int(input("Entrez le numéro du cheval sur lequel parier (1-8): ")) - 1
+            if numero_cheval < 0 or numero_cheval >= 8:
+              print("Choisisez entre les chevaux 1 a 8")
             self.course.pari_en_cours = (self.course.chevaux[numero_cheval], montant)
             print(f"Vous pariez {montant} sur {self.course.chevaux[numero_cheval].nom}.")
 
