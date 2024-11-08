@@ -83,10 +83,10 @@ class Jeu:
           while True:
             numero_cheval = int(input("Entrez le numéro du cheval sur lequel parier (1-8): ")) - 1
             if numero_cheval < 0 or numero_cheval >= 8:
-				print("Choisisez entre les chevaux 1 a 8")
+		print("Choisisez entre les chevaux 1 a 8")
                 continue
-        self.course.pari_en_cours = (self.course.chevaux[numero_cheval], montant)
-        print(f"Vous pariez {montant} sur {self.course.chevaux[numero_cheval].nom}.")
+	        self.course.pari_en_cours = (self.course.chevaux[numero_cheval], montant)
+	        print(f"Vous pariez {montant} sur {self.course.chevaux[numero_cheval].nom}.")
 
     def lancer_course(self):
         if self.course.pari_en_cours is None:
