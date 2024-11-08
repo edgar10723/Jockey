@@ -1,5 +1,4 @@
 import random
-import time
 
 class Cheval:
     def __init__(self, nom, min_vitesse, max_vitesse):
@@ -40,35 +39,19 @@ class CourseDeJockey:
             for i in range(8)
         ]
 
-        def demarrer(self):
-          print("La course démarre...")
-          while True:
-              for cheval in self.chevaux:
-                  vitesse = cheval.courir()
-                  print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
-                  for cheval in self.chevaux:
-                    if cheval.distance >= 100:
-                      if len(cheval) >=2:
-                        premier = 0
-                        if premier < cheval_fini:
-                          cheval = premier
-                          return premier
-                        else:
-                            if cheval.distance >= 100:
-                              return cheval
-                      
-    '''def demarrer(self):
+    def demarrer(self):
         print("La course démarre...")
         while True:
             for cheval in self.chevaux:
                 vitesse = cheval.courir()
                 print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
-                if cheval.distance >= 100: #SI 2 CHOISI PLUS HAUT
-                    return cheval'''
+                if cheval.distance >= 100:
+                    return cheval
 
 class Jeu:
     def __init__(self):
         self.course = CourseDeJockey()
+        self.course.pari_en_cours = None
 
     def information(self):
         print("Informations sur les chevaux:")
@@ -101,7 +84,7 @@ class Jeu:
         gagnant = self.course.demarrer()
         print(f"Le gagnant est {gagnant.nom}!")
 
-        if gagnant == self.course.pari_en_cours[0]:
+        if self.course.pari_en_cours and gagnant == self.course.pari_en_cours[0]:
             paiement = 2 * self.course.pari_en_cours[1]
             self.course.systeme_de_paris.mettre_a_jour_total(paiement)
             print(f"Vous avez gagné {paiement}! Nouveau solde: {self.course.systeme_de_paris.total}")
@@ -111,4 +94,3 @@ class Jeu:
 if __name__ == "__main__":
     jeu = Jeu()
     jeu.demarrer()
-
