@@ -81,10 +81,14 @@ class Jeu:
             print(f"Vous pariez {montant} sur {self.course.chevaux[numero_cheval].nom}.")
 
     def lancer_course(self):
+        if self.course.pari_en_cours is None:
+            print("Vous devez d'abord placer un pari avant de commencer la course.")
+            return
+        
         gagnant = self.course.demarrer()
         print(f"Le gagnant est {gagnant.nom}!")
 
-        if self.course.pari_en_cours and gagnant == self.course.pari_en_cours[0]:
+        if gagnant == self.course.pari_en_cours[0]:
             paiement = 2 * self.course.pari_en_cours[1]
             self.course.systeme_de_paris.mettre_a_jour_total(paiement)
             print(f"Vous avez gagné {paiement}! Nouveau solde: {self.course.systeme_de_paris.total}")
