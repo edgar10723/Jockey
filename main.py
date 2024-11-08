@@ -75,6 +75,8 @@ class Jeu:
 
     def placer_pari(self):
         montant = int(input("Entrer la somme à parier: "))
+        if montant <= 0:
+            return int(input("Entrer la somme à parier: "))
         if self.course.systeme_de_paris.parier(montant):
             numero_cheval = int(input("Entrez le numéro du cheval sur lequel parier (1-8): ")) - 1
             self.course.pari_en_cours = (self.course.chevaux[numero_cheval], montant)
@@ -98,3 +100,13 @@ class Jeu:
 if __name__ == "__main__":
     jeu = Jeu()
     jeu.demarrer()
+
+
+#-----------------------------------------------------
+#ERROR
+#pari neg
+#choix de chevaux entre 8
+#si 'course' sans parier, retourne au main
+#EXTRA
+'''Entrer la somme a parier: 
+(vous avez ...)'''
