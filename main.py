@@ -62,17 +62,17 @@ class FaitAleatoire:
         pass  # No need for attributes here
 
     def event_inattendu(self, cheval):
-        if random.random() < 0.05:  # 5% chance of accident
+        if random.random() < 0.005:  # 5% chance of accident
             print(f"{cheval.nom} a eu un accident et s'arrête.")
             cheval.vitesse = 0
             time.sleep(2)  # Simulate a pause
             cheval.apply_injury()  # Apply injury effects
 
-        elif random.random() < 0.03:  # 3% chance of injury
+        elif random.random() < 0.01:  # 3% chance of injury
             print(f"{cheval.nom} s'est blessé.")
             cheval.apply_injury()  # Apply injury effects
 
-        elif random.random() < 0.01:  # 1% chance of a speed boost
+        elif random.random() < 0.005:  # 1% chance of a speed boost
             print(f"{cheval.nom} a reçu un coup de pouce!")
             cheval.apply_doping()  # Apply doping effects
 
