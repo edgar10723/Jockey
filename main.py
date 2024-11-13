@@ -27,7 +27,7 @@ class Cheval:
     def vitesse_moyenne(self):
         return self.total_vitesse / self.courses if self.courses > 0 else 0
 
-    def apply_doping(self):
+    def a_dope(self):
         self.min_vitesse += 5
         self.max_vitesse += 5
         self.doped = True
@@ -38,7 +38,7 @@ class Cheval:
             self.max_vitesse -= 2
             self.doped = False
 
-    def apply_injury(self):
+    def a_blessure(self):
         self.injured = True
         self.min_vitesse -= 3
         self.max_vitesse -= 3
@@ -60,18 +60,18 @@ class SystemeDeParis:
 
 class FaitAleatoire:
     def __init__(self):
-        pass  # No need for attributes here
+        pass  
 
     def event_inattendu(self, cheval):
-        if random.random() < 0.05:  # 5% chance of accident
+        if random.random() < 0.05:  
             print(f"{cheval.nom} a eu un accident et s'arrête.")
             cheval.vitesse = 0
-            time.sleep(2)  # Simulate a pause
-            cheval.apply_injury()  # Apply injury effects
+            time.sleep(2)  
+            cheval.a_blessure()  
 
-        elif random.random() < 0.01:  # 1% chance of a speed boost
+        elif random.random() < 0.01:  
             print(f"{cheval.nom} a reçu un coup de pouce!")
-            cheval.apply_doping()  # Apply dop
+            cheval.a_dope()  
 
 class CourseDeJockey:
     def __init__(self):
@@ -88,8 +88,8 @@ class CourseDeJockey:
     def afficher_course(self):
         print("\nCourse actuelle:")
         for cheval in self.chevaux:
-            position = int(cheval.distance // 3)  # 1 block = 3 km/h (converted to m/s)
-            track_length = 33  # Length of the track in characters
+            position = int(cheval.distance // 3)  # 1 block = 3 km/h 
+            track_length = 33 #char long
             position = min(position, track_length - 1)
             track = '-' * position + '-()>' + '-' * (track_length - position - 4)
             print(track)
@@ -107,7 +107,7 @@ class CourseDeJockey:
                     gagnants.append(cheval)
             if gagnants:
                 for cheval in self.chevaux:
-                    cheval.end_race()  # Reset doping effects after race
+                    cheval.end_race()  
                 return max(gagnants, key=lambda x: x.vitesse_moyenne())
 
 class Jeu:
@@ -118,7 +118,6 @@ class Jeu:
     def information(self):
         print("Informations sur les chevaux:")
         for cheval in self.course.chevaux:
-            # Display speed range in m/s
             print(f"{cheval.nom}, Vitesse: [{cheval.min_vitesse} - {cheval.max_vitesse}] m/s")
 
     def demarrer(self):
