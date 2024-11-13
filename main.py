@@ -1,3 +1,4 @@
+
 import random
 import time
 
@@ -62,19 +63,15 @@ class FaitAleatoire:
         pass  # No need for attributes here
 
     def event_inattendu(self, cheval):
-        if random.random() < 0.005:  # 5% chance of accident
+        if random.random() < 0.05:  # 5% chance of accident
             print(f"{cheval.nom} a eu un accident et s'arrête.")
             cheval.vitesse = 0
             time.sleep(2)  # Simulate a pause
             cheval.apply_injury()  # Apply injury effects
 
-        elif random.random() < 0.01:  # 3% chance of injury
-            print(f"{cheval.nom} s'est blessé.")
-            cheval.apply_injury()  # Apply injury effects
-
-        elif random.random() < 0.005:  # 1% chance of a speed boost
+        elif random.random() < 0.01:  # 1% chance of a speed boost
             print(f"{cheval.nom} a reçu un coup de pouce!")
-            cheval.apply_doping()  # Apply doping effects
+            cheval.apply_doping()  # Apply dop
 
 class CourseDeJockey:
     def __init__(self):
@@ -96,7 +93,7 @@ class CourseDeJockey:
             position = min(position, track_length - 1)
             track = '-' * position + '-()>' + '-' * (track_length - position - 4)
             print(track)
-            print(f"{cheval.nom} vitesse: {cheval.vitesse} m/s")  # Display current speed in m/s
+            print(f"{cheval.nom} vitesse: {cheval.vitesse} m/s")  
 
     def demarrer(self):
         print("La course démarre...")
@@ -104,7 +101,7 @@ class CourseDeJockey:
             self.afficher_course()
             gagnants = []
             for cheval in self.chevaux:
-                self.fait_aleatoire.event_inattendu(cheval)  # Check for random events
+                self.fait_aleatoire.event_inattendu(cheval)  
                 cheval.courir()
                 if cheval.distance >= 100:
                     gagnants.append(cheval)
