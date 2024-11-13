@@ -1,4 +1,3 @@
-
 import random
 import time
 
@@ -59,17 +58,14 @@ class SystemeDeParis:
         self.total += montant
 
 class FaitAleatoire:
-    def __init__(self):
-        pass  
-
     def event_inattendu(self, cheval):
-        if random.random() < 0.05:  
+        if random.random() < 0.05:  # 5% chance of injury
             print(f"{cheval.nom} a eu un accident et s'arrête.")
             cheval.vitesse = 0
-            time.sleep(2)  
+            time.sleep(2)  # Simulate time lost due to injury
             cheval.a_blessure()  
 
-        elif random.random() < 0.01:  
+        elif random.random() < 0.01:  # 1% chance of doping
             print(f"{cheval.nom} a reçu un coup de pouce!")
             cheval.a_dope()  
 
@@ -88,12 +84,12 @@ class CourseDeJockey:
     def afficher_course(self):
         print("\nCourse actuelle:")
         for cheval in self.chevaux:
-            position = int(cheval.distance // 3)  # 1 block = 3 km/h 
-            track_length = 33 #char long
+            position = int(cheval.distance // 3)  # 1 block = 3 m
+            track_length = 33  # Track length in characters
             position = min(position, track_length - 1)
             track = '-' * position + '-()>' + '-' * (track_length - position - 4)
             print(track)
-            print(f"{cheval.nom} vitesse: {cheval.vitesse} m/s")  
+            print(f"{cheval.nom} vitesse: {cheval.vitesse:.2f} m/s")  
 
     def demarrer(self):
         print("La course démarre...")
