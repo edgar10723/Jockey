@@ -1,4 +1,5 @@
 import random
+import time
 
 class Cheval:
     def __init__(self, nom, min_vitesse, max_vitesse):
@@ -9,16 +10,37 @@ class Cheval:
         self.vitesse = 0
         self.total_vitesse = 0
         self.courses = 0
+        self.doped = False
+        self.injured = False
 
     def courir(self):
-        self.vitesse = random.randint(self.min_vitesse, self.max_vitesse)
-        self.distance += self.vitesse
+        if self.injured:
+            self.vitesse = 0
+        else:
+            self.vitesse = random.randint(self.min_vitesse, self.max_vitesse)
+            self.distance += self.vitesse
         self.total_vitesse += self.vitesse
         self.courses += 1
         return self.vitesse
 
     def vitesse_moyenne(self):
         return self.total_vitesse / self.courses if self.courses > 0 else 0
+
+    def apply_doping(self):
+        self.min_vitesse += 5
+        self.max_vitesse += 5
+        self.doped = True
+
+    def end_race(self):
+        if self.doped:
+            self.min_vitesse -= 2
+            self.max_vitesse -= 2
+            self.doped = False
+
+    def apply_injury(self):
+        self.injured = True
+        self.min_vitesse -= 3
+        self.max_vitesse -= 3
 
 class SystemeDeParis:
     def __init__(self):
@@ -35,10 +57,30 @@ class SystemeDeParis:
     def mettre_a_jour_total(self, montant):
         self.total += montant
 
+class FaitAleatoire:
+    def __init__(self):
+        pass  # No need for attributes here
+
+    def event_inattendu(self, cheval):
+        if random.random() < 0.05:  # 5% chance of accident
+            print(f"{cheval.nom} a eu un accident et s'arrête.")
+            cheval.vitesse = 0
+            time.sleep(2)  # Simulate a pause
+            cheval.apply_injury()  # Apply injury effects
+
+        elif random.random() < 0.03:  # 3% chance of injury
+            print(f"{cheval.nom} s'est blessé.")
+            cheval.apply_injury()  # Apply injury effects
+
+        elif random.random() < 0.01:  # 1% chance of a speed boost
+            print(f"{cheval.nom} a reçu un coup de pouce!")
+            cheval.apply_doping()  # Apply doping effects
+
 class CourseDeJockey:
     def __init__(self):
         self.chevaux = self.creer_chevaux()
         self.systeme_de_paris = SystemeDeParis()
+        self.fait_aleatoire = FaitAleatoire()
 
     def creer_chevaux(self):
         return [
@@ -46,16 +88,29 @@ class CourseDeJockey:
             for i in range(8)
         ]
 
+    def afficher_course(self):
+        print("\nCourse actuelle:")
+        for cheval in self.chevaux:
+            position = int(cheval.distance // 3)  # 1 block = 3 km/h (converted to m/s)
+            track_length = 33  # Length of the track in characters
+            position = min(position, track_length - 1)
+            track = '-' * position + '-()>' + '-' * (track_length - position - 4)
+            print(track)
+            print(f"{cheval.nom} vitesse: {cheval.vitesse} m/s")  # Display current speed in m/s
+
     def demarrer(self):
         print("La course démarre...")
         while True:
+            self.afficher_course()
             gagnants = []
             for cheval in self.chevaux:
-                vitesse = cheval.courir()
-                print(f"{cheval.nom} court {vitesse} mètres (Total: {cheval.distance})")
+                self.fait_aleatoire.event_inattendu(cheval)  # Check for random events
+                cheval.courir()
                 if cheval.distance >= 100:
                     gagnants.append(cheval)
             if gagnants:
+                for cheval in self.chevaux:
+                    cheval.end_race()  # Reset doping effects after race
                 return max(gagnants, key=lambda x: x.vitesse_moyenne())
 
 class Jeu:
@@ -66,7 +121,8 @@ class Jeu:
     def information(self):
         print("Informations sur les chevaux:")
         for cheval in self.course.chevaux:
-            print(f"{cheval.nom}, Spd: [{cheval.min_vitesse} - {cheval.max_vitesse}] km/h")
+            # Display speed range in m/s
+            print(f"{cheval.nom}, Vitesse: [{cheval.min_vitesse} - {cheval.max_vitesse}] m/s")
 
     def demarrer(self):
         while True:
@@ -109,6 +165,9 @@ class Jeu:
 
         gagnant = self.course.demarrer()
         print(f"Le gagnant est {gagnant.nom}!")
+        print("Distances parcourues par chaque cheval:")
+        for cheval in self.course.chevaux:
+            print(f"{cheval.nom}: {cheval.distance:.2f} mètres")
 
         if gagnant == self.course.pari_en_cours[0]:
             paiement = 2 * self.course.pari_en_cours[1]
