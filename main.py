@@ -98,10 +98,6 @@ class Jeu:
             else:
                 print("Action invalide. Veuillez choisir à nouveau.")
 
-            if self.course.systeme_de_paris.total <= 0:
-                print("Vous n'avez plus d'argent. Bye bye!")
-                break
-
     def placer_pari(self):
         while True:
             try:
@@ -135,6 +131,9 @@ class Jeu:
             print(f"Vous avez gagné {paiement}! Nouveau solde: {self.course.systeme_de_paris.total} €")
         else:
             print("Vous avez perdu votre pari.")
+            if self.course.systeme_de_paris.total <= 0:
+                print("Vous n'avez plus d'argent")
+                return
 
         self.course.reset_chevaux()
 
