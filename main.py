@@ -101,7 +101,10 @@ class Jeu:
     def placer_pari(self):
         while True:
             try:
-                montant = int(input("Entrer la somme à parier: "))
+                montant = int(input("Entrer la somme à parier (minimum 25): "))
+                if montant < 25:
+                    print("Le montant doit être supérieur à 24 . Veuillez réessayer.")
+                    continue
                 if montant <= 0:
                     print("Le montant doit être positif. Veuillez réessayer.")
                     continue
