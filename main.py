@@ -131,8 +131,9 @@ class Jeu:
             print(f"Vous avez gagné {paiement}! Nouveau solde: {self.course.systeme_de_paris.total} €")
         else:
             print("Vous avez perdu votre pari.")
+            # Check if the total amount is zero after losing the bet
             if self.course.systeme_de_paris.total <= 0:
-                print("Vous n'avez plus d'argent")
+                print("Vous n'avez plus d'argent. Bye bye!")
                 return
 
         self.course.reset_chevaux()
